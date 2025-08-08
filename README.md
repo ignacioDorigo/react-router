@@ -2,7 +2,8 @@
 Aprendiendo a usar react router para manejar la "navegacion" SPA
 
 # Dependencias usadas
---> Formik. `
+--> Formik.  
+
 --> Yup
 --> SweetAlert2
 --> React-Router
