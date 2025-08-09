@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../Button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import "./LoginForm.css";
+import { UsuarioContext } from "../../context/UsuarioContext";
 
 const initialValues = {
   email: "",
@@ -24,19 +25,21 @@ const validationSchema = Yup.object({
 
 export default function Login({ loginUsuario }) {
   const navigate = useNavigate();
+  const { login } = useContext(UsuarioContext);
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (formulario) => {
       try {
-        loginUsuario(formulario);
+        const user = loginUsuario(formulario);
         Swal.fire({
           title: "Exito",
           text: "Ingreso exitoso",
           icon: "success",
           draggable: true,
         }).then(() => {
+          login(user);
           navigate("/logged");
         });
       } catch (error) {

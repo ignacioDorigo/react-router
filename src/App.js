@@ -15,8 +15,9 @@ const App = () => {
       console.log(mensaje);
       throw new Error(mensaje);
     } else {
-      console.log("El usuario no esta en registrado");
+      // console.log("El usuario no esta en registrado");
       setUsuarios([...usuarios, usuario]);
+      return usuario;
     }
   };
 
@@ -28,7 +29,7 @@ const App = () => {
     if (yaEsta.length > 0) {
       const usuarioLista = yaEsta[0];
       if (usuarioLista.password === usuario.password) {
-        return "Login exitoso";
+        return usuarioLista;
       } else {
         throw new Error("Credenciales incorrectas");
       }
