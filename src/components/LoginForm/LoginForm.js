@@ -51,6 +51,10 @@ export default function Login({ loginUsuario }) {
     },
   });
 
+  const goToRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <form className="form" onSubmit={formik.handleSubmit}>
       <h2 className="form__titulo">Login</h2>
@@ -95,9 +99,19 @@ export default function Login({ loginUsuario }) {
           )}
         </div>
       </div>
+      <div className="form__recuperar">
+        <p className="form__recuperarPassword">¿Has olvidado tu contraseña?</p>
+      </div>
       <Button type="submit" className="form__button">
-        Registrar
+        Ingresar
       </Button>
+
+      <div className="form__crear">
+        <p className="form__crearCuenta">
+          Todavía no tienes una cuenta?{" "}
+          <span onClick={goToRegister}>Click aquí</span>
+        </p>
+      </div>
     </form>
   );
 }

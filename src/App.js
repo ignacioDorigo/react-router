@@ -11,7 +11,7 @@ const App = () => {
       (usuarioEnLista) => usuarioEnLista.email === usuario.email
     );
     if (yaEsta) {
-      const mensaje = "El usuario ya esta2 registrado";
+      const mensaje = "Ese mail ya se encuentra registrado";
       console.log(mensaje);
       throw new Error(mensaje);
     } else {
@@ -36,7 +36,12 @@ const App = () => {
       throw new Error("Usuario no registrado");
     }
   };
-  return <AppRouter registrarUsuario={registrarUsuario} loginUsuario={loginUsuario}></AppRouter>;
+  return (
+    <AppRouter
+      registrarUsuario={registrarUsuario}
+      loginUsuario={loginUsuario}
+    ></AppRouter>
+  );
 };
 
 export default App;
