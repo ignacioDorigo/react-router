@@ -1,5 +1,6 @@
 import React from "react";
+import RegisterForm from "../components/RegisterForm/RegisterForm";
 
 export default function RegisterScreen() {
-  return <div>RegisterScreen</div>;
+  return <RegisterForm></RegisterForm>;
 }
