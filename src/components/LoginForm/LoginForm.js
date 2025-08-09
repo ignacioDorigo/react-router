@@ -58,6 +58,14 @@ export default function Login({ loginUsuario }) {
     navigate("/register");
   };
 
+  const recuperarPassword = () => {
+    Swal.fire({
+      title: "Mantenimiento",
+      text: "Esta función esta en mantenimiento",
+      icon: "info",
+    });
+  };
+
   return (
     <form className="form" onSubmit={formik.handleSubmit}>
       <h2 className="form__titulo">Login</h2>
@@ -103,7 +111,9 @@ export default function Login({ loginUsuario }) {
         </div>
       </div>
       <div className="form__recuperar">
-        <p className="form__recuperarPassword">¿Has olvidado tu contraseña?</p>
+        <p className="form__recuperarPassword" onClick={recuperarPassword}>
+          ¿Has olvidado tu contraseña?
+        </p>
       </div>
       <Button type="submit" className="form__button">
         Ingresar

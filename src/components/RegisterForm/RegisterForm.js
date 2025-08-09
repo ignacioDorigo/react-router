@@ -40,6 +40,10 @@ export default function RegisterForm({ registrarUsuario }) {
   const navigate = useNavigate();
   const { login } = useContext(UsuarioContext);
 
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
@@ -67,6 +71,8 @@ export default function RegisterForm({ registrarUsuario }) {
       }
     },
   });
+
+
 
   return (
     <form className="form" onSubmit={formik.handleSubmit}>
@@ -150,6 +156,11 @@ export default function RegisterForm({ registrarUsuario }) {
       <Button type="submit" className="form__button">
         Registrar
       </Button>
+      <div className="form__crear">
+        <p className="form__crearCuenta">
+          Ya tienes una cuenta? <span onClick={goToLogin}>Click aquí</span>
+        </p>
+      </div>
     </form>
   );
 }
