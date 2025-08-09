@@ -3,6 +3,8 @@ import "./RegisterForm.css";
 import Button from "../Button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const initialValues = {
   nombre: "",
@@ -33,15 +35,31 @@ const validationSchema = Yup.object({
     .required("El password es obligatorio"),
 });
 
-export default function RegisterForm() {
+export default function RegisterForm({ registrarUsuario }) {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (formulario) => {
       try {
-        console.log(formulario);
+        registrarUsuario(formulario);
+        Swal.fire({
+          title: "Exito",
+          text: "Registro exitoso",
+          icon: "success",
+          draggable: true,
+        }).then(()=>{
+            navigate("/login")
+        });
       } catch (error) {
         console.log(error);
+        Swal.fire({
+          title: "Error",
+          text: `${error.message}`,
+          icon: "error",
+          draggable: true,
+        });
       }
     },
   });
@@ -118,6 +136,7 @@ export default function RegisterForm() {
             placeholder="Password"
             onBlur={formik.handleBlur}
             type="password"
+            autoComplete="new-password"
           ></input>
           {formik.errors.password && formik.touched.password && (
             <div className="form__errores">{formik.errors.password}</div>

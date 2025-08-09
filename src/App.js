@@ -1,8 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import AppRouter from "./routes/AppRouter";
 
 const App = () => {
-  return <AppRouter></AppRouter>;
+  // Es para imitar a una API
+  const [usuarios, setUsuarios] = useState([]);
+
+  const registrarUsuario = (usuario) => {
+    console.log(usuarios);
+    const yaEsta = usuarios.find(
+      (usuarioEnLista) => usuarioEnLista.email === usuario.email
+    );
+    if (yaEsta) {
+      const mensaje = "El usuario ya esta2 registrado";
+      console.log(mensaje);
+      throw new Error(mensaje);
+    } else {
+      console.log("El usuario no esta en registrado");
+      setUsuarios([...usuarios, usuario]);
+    }
+  };
+
+  const loginUsuario = (usuario) => {
+    const yaEsta = usuarios.filter(
+      (usuarioEnLista) => usuarioEnLista.email === usuario.email
+    );
+    console.log(yaEsta);
+    if (yaEsta.length > 0) {
+      const usuarioLista = yaEsta[0];
+      if (usuarioLista.password === usuario.password) {
+        return "Login exitoso";
+      } else {
+        throw new Error("Credenciales incorrectas");
+      }
+    } else {
+      throw new Error("Usuario no registrado");
+    }
+  };
+  return <AppRouter registrarUsuario={registrarUsuario} loginUsuario={loginUsuario}></AppRouter>;
 };
 
 export default App;
